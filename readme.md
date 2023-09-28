@@ -1,4 +1,4 @@
-Project Description
+Project Description - 
 
 We will go with Project 1 : Enriching End of Life Care with Technology
 To enhance the overall support and experience for individuals approaching end of life, we have opted to employ Machine Learning (ML) algorithms to meet our objectives. There are two key aspects to this implementation:
