@@ -24,6 +24,8 @@ The **Chatbot** serves two primary purposes:
 
 - React
 - Node JS
+- Python
+- Machine Learning Models - SciKit Learn
 
 ## The Team
 
