@@ -5,5 +5,12 @@
 	"prettier.useTabs": true,
 	"prettier.singleQuote": true,
 	"files.eol": "\n",
-	"eslint.workingDirectories": ["./client", "./server"]
+	"eslint.workingDirectories": [
+		"./client",
+		"./server"
+	],
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.autopep8"
+	},
+	"python.formatting.provider": "none"
 }
