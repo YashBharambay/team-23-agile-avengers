@@ -10,7 +10,7 @@ router
 	.route('/')
 	.get(async (req, res) => {
 		try {
-			let patientsList = await patientsData.getAllMovies();
+			let patientsList = await patientsData.getAllPatients();
 			res.json(patientsList);
 		} catch (e) {
 			res.sendStatus(500);
@@ -19,13 +19,13 @@ router
 	.post(async (req, res) => {
 		let patientInfo = req.body;
 		try {
-			console.log('in patients post route');
+			//error handeling
 		} catch (e) {
 			return res.status(400).json({ error: e });
 		}
 
 		try {
-			const newMovie = await moviesData.createPatient(
+			const newPatient = await patientsData.createPatient(
 				patientInfo.firstName,
 				patientInfo.middleName,
 				patientInfo.lastName,
@@ -52,8 +52,7 @@ router
 				patientInfo.insurrance_plan_type,
 				patientInfo.insurrance_primarycare_provider
 			);
-			console.log('after adding');
-			res.json(newMovie);
+			res.json(newPatient);
 		} catch (e) {
 			res.sendStatus(500);
 		}
