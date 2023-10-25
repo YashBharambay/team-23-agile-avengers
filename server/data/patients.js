@@ -35,7 +35,7 @@ const createPatient = async (
 	const patientscollection = await patients();
 
 	let newPatient = {
-		firstame: firstName,
+		firstName: firstName,
 		middleName: middleName,
 		lastName: lastName,
 		age: age,
@@ -76,9 +76,7 @@ const createPatient = async (
 
 const getAllPatients = async () => {
 	const patientscollection = await patients();
-
 	const all_patients = await patientscollection.find({}).toArray();
-
 	if (!all_patients) {
 		throw "can't fetch all movies";
 	}

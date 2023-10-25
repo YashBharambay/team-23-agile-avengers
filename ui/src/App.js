@@ -1,13 +1,17 @@
 import './App.css';
 import PatientDetail from '../src/component/patientDetail';
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import LandingPage from './pages/landing';
+import PatientAuth from './pages/PatientAuth';
 function App() {
 	return (
-		<div className="App">
-			<h1>Enriching End of Life Care with Technology</h1>
-			<p>Team Agile Avengers</p>
-			<PatientDetail />
-		</div>
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<LandingPage />} />
+				<Route path="/PatientLogin" element={<PatientAuth />} />
+				<Route path="/PatientDetailsForm" element={<PatientDetail />} />
+			</Routes>
+		</BrowserRouter>
 	);
 }
 

@@ -1,0 +1,14 @@
+.main {
+	display: flex;
+	justify-content: center;
+	height: 100vh; /* This ensures the container takes up the full viewport height */
+	text-align: center;
+}
+.buttons {
+	margin: 7px;
+}
+
+.showlink {
+	text-decoration: none !important;
+	color: white;
+}
