@@ -1,8 +1,16 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import './landing.css';
+import { AuthContext } from '../firebase/Auth';
+
 export default function LandingPage() {
+	const { currentUser } = useContext(AuthContext);
+
+	if (currentUser) {
+		return <Navigate to={`/doctorDashboard`} />;
+	}
 	return (
 		<div className="main">
 			<div>
@@ -14,7 +22,9 @@ export default function LandingPage() {
 					</Link>
 				</Button>
 				<Button variant="contained" className="buttons">
-					Doctor
+					<Link className="showlink" to="/DocLogin">
+						Doctor
+					</Link>
 				</Button>
 			</div>
 		</div>
