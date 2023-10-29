@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button, Link } from '@mui/material';
 import './PatientAuth.css';
-import PatientDetail from '../component/patientDetail';
+import PatientDetail from '../components/PatientDetailForm/patientDetail';
 
 export default function PatientAuth() {
 	return (

@@ -29,6 +29,7 @@ router
 				patientInfo.firstName,
 				patientInfo.middleName,
 				patientInfo.lastName,
+				patientInfo.emailId,
 				patientInfo.age,
 				patientInfo.gender,
 				patientInfo.height,
