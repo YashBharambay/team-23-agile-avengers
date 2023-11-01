@@ -10,8 +10,8 @@ import {
 } from '../firebase/functions';
 import { AuthContext } from '../firebase/Auth';
 import Divider from '@mui/material/Divider';
-import SocialSignIn from '../component/SocialSignIn';
 import '../assets/common.css';
+import SocialSignIn from '../component/PatientDetailForm/SocialSignIn';
 
 function DocLogin() {
 	const { currentUser } = useContext(AuthContext);

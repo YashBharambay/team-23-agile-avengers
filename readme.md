@@ -20,6 +20,61 @@ The **Chatbot** serves two primary purposes:
 
 • Assisting the patient in communicating requests to the staff if they are inaccessible, such as needing to use the restroom or requesting water.
 
+## Setup
+
+### 1. Install dependencies
+
+Install npm dependencies in both the `UI` and `server` sub-directories and also the root directory.
+
+# checkout to server and install dependencies
+
+cd server
+npm i
+
+# checkout to client and install dependencies
+
+cd ../ui
+npm i
+
+````
+### Set up environment variables
+
+> **NOTE:** If you are the grader, you should have the populated `.env` in the submission zip so you can skip this step
+
+You need to create `.env` files in `UI` directory, you can also refer to the `.env.example` included in the same location where the `.env` file should be created
+
+#### In `ui` directory
+
+```ini
+REACT_APP_FIREBASE_KEY=""
+REACT_APP_FIREBASE_DOMAIN=""
+REACT_APP_FIREBASE_PROJECT_ID=""
+REACT_APP_FIREBASE_STORAGE_BUCKET=""
+REACT_APP_FIREBASE_SENDER_ID=""
+REACT_APP_FIREBASE_APP_ID=""
+````
+
+## Running the Application
+
+You could `cd` into `ui` and `server` separately (you will have to use 2 different instances of the terminal) and start each one individually:
+
+```bash
+# start the server first (Express App)
+cd server
+npm start
+```
+
+```bash
+# start the ui (React App)
+cd ui
+npm start
+```
+
+Now if you didn't change any of the configurations mentioned above or the Port, the applications should be running on:
+
+- Server: `http://localhost:3002` and
+- UI : `http://localhost:3000`
+
 ## Technologies Used
 
 - React
@@ -35,3 +90,7 @@ The **Chatbot** serves two primary purposes:
 - [Vaishnavi Nayak](https://github.com/Vaishnavi-Nayak28)
 - [Keshav Mishra](https://github.com/kmishra6)
 - [Mahesh Pisharody](https://github.com/mahesh349)
+
+```
+
+```

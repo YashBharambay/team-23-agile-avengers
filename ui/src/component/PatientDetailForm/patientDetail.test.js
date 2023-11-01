@@ -17,15 +17,35 @@ test('renders First Name field', () => {
 });
 
 test('Age field accepts only numbers', () => {
-	const { getByLabelText } = render(<PatientDetail />);
-	const ageInput = getByLabelText('Age');
+	const ageInput = screen.getByLabelText('Age');
 	fireEvent.change(ageInput, { target: { value: 'abc' } }); //Entered NonNumber
 	expect(ageInput.value).toBe(''); // Value should be an empty string after invalid input
 });
 
 test('Age field accepts numeric input', () => {
-	const { getByLabelText } = render(<PatientDetail />);
-	const ageInput = getByLabelText('Age');
+	const ageInput = screen.getByLabelText('Age');
 	fireEvent.change(ageInput, { target: { value: '25' } }); //Enter Number
 	expect(ageInput.value).toBe('25'); // Value should remain as '25'
+});
+
+test('PatientDetail renders without errors', () => {
+	render(<PatientDetail />);
+	const patientDetailsHeading = screen.getByRole('heading', {
+		name: 'Patient Details',
+	});
+	expect(patientDetailsHeading).toBeInTheDocument();
+});
+
+test('Height field accepts only numbers', () => {
+	render(<PatientDetail />);
+	const ageInput = screen.getByLabelText('Height');
+	fireEvent.change(ageInput, { target: { value: 'abc' } }); //Entered NonNumber
+	expect(ageInput.value).toBe(''); // Value should be an empty string after invalid input
+});
+
+test('Height field accepts numeric input', () => {
+	render(<PatientDetail />);
+	const ageInput = screen.getByLabelText('Height');
+	fireEvent.input(ageInput, { target: { value: '5.9' } }); // Enter Number
+	expect(ageInput.value).toBe('5.9'); // Value should remain as '5.9'
 });
