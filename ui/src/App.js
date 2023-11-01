@@ -1,5 +1,4 @@
 import './App.css';
-import PatientDetail from '../src/component/patientDetail';
 import { AuthProvider } from './firebase/Auth';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/landing';
@@ -7,6 +6,7 @@ import PatientAuth from './pages/PatientAuth';
 import DocLogin from './pages/DocLogin';
 import DocSignUp from './pages/DocSignUp';
 import DoctorDashboard from './pages/DoctorDashboard';
+import PatientDetail from './component/PatientDetailForm/patientDetail';
 
 function App() {
 	return (

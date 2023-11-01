@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
-import './patientDetail.css';
+import '../PatientDetailForm/patientDetail.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Button } from '@mui/material';
+import {
+	Button,
+	FormControl,
+	InputLabel,
+	MenuItem,
+	Select,
+} from '@mui/material';
 import Grid from '@mui/material/Grid';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function PatientDetail() {
 	const [formData, setFormData] = useState({});
 
 	const handleInputChange = (e) => {
 		// Update the form data in the state when input values change
+		const { name, value } = e.target;
+		if (name === 'smoke' || name === 'alcohol') {
+			setFormData({ ...formData, [name]: parseInt(value) });
+		} else {
+			setFormData({ ...formData, [name]: value });
+		}
+
 		setFormData({
 			...formData,
 			[e.target.id]: e.target.value,
@@ -18,6 +32,10 @@ export default function PatientDetail() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		if (!formData.firstName) {
+			toast.error('First Name is required');
+			return;
+		}
 
 		try {
 			const response = await fetch('http://localhost:3002/patients', {
@@ -29,6 +47,7 @@ export default function PatientDetail() {
 			});
 
 			if (response.ok) {
+				toast.success('Successfully submitted!');
 				console.log('Form data submitted successfully');
 			} else {
 				console.error('Error submitting form data');
@@ -50,13 +69,17 @@ export default function PatientDetail() {
 			autoComplete="off"
 			onSubmit={handleSubmit}
 		>
+			<div>
+				<Toaster />
+			</div>
 			<Grid container spacing={2}>
 				<Grid item xs={6}>
 					<TextField
 						id="firstName"
-						label="First Name"
+						label="First Name "
 						defaultValue={formData['firstName'] || ''}
 						onChange={handleInputChange}
+						required
 					/>
 				</Grid>
 				<Grid item xs={6}>
@@ -73,6 +96,15 @@ export default function PatientDetail() {
 						label="Last Name"
 						defaultValue={formData['lastName'] || ''}
 						onChange={handleInputChange}
+					/>
+				</Grid>
+				<Grid item xs={6}>
+					<TextField
+						id="emailId"
+						label="Email Id "
+						defaultValue={formData['emailId'] || ''}
+						onChange={handleInputChange}
+						required
 					/>
 				</Grid>
 				<Grid item xs={6}>
@@ -108,20 +140,34 @@ export default function PatientDetail() {
 					/>
 				</Grid>
 				<Grid item xs={6}>
-					<TextField
-						id="smoke"
-						label="Smoke"
-						defaultValue={formData['smoke'] || ''}
-						onChange={handleInputChange}
-					/>
+					<FormControl sx={{ minWidth: '80%' }}>
+						<InputLabel id="demo-simple-select-label">Smoke</InputLabel>
+						<Select
+							id="demo-simple-select"
+							label="Smoke"
+							onChange={handleInputChange}
+							value={formData.smoke}
+							name="smoke"
+						>
+							<MenuItem value={1}>Yes</MenuItem>
+							<MenuItem value={0}>No</MenuItem>
+						</Select>
+					</FormControl>
 				</Grid>
 				<Grid item xs={6}>
-					<TextField
-						id="alcohol"
-						label="Alcohol"
-						defaultValue={formData['alcohol'] || ''}
-						onChange={handleInputChange}
-					/>
+					<FormControl sx={{ minWidth: '80%' }}>
+						<InputLabel id="demo-simple-select-label">Alcohol</InputLabel>
+						<Select
+							id="demo-simple-select"
+							label="alcohol"
+							onChange={handleInputChange}
+							value={formData.alcohol}
+							name="alcohol"
+						>
+							<MenuItem value={1}>Yes</MenuItem>
+							<MenuItem value={0}>No</MenuItem>
+						</Select>
+					</FormControl>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField

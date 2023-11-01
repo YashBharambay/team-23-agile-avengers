@@ -1,5 +1,4 @@
 import React from 'react';
-import { doSocialSignIn } from '../firebase/functions';
 import {
 	TextField,
 	Button,
@@ -10,6 +9,7 @@ import {
 	FormControl,
 } from '@mui/material/';
 import GoogleIcon from '@mui/icons-material/Google';
+import { doSocialSignIn } from '../../firebase/functions';
 
 const SocialSignIn = () => {
 	const socialSignOn = async (provider) => {
