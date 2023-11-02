@@ -59,4 +59,19 @@ router
 		}
 	});
 
+router.route('/:emailId').get(async (req, res) => {
+	try {
+		//emailId
+		if (!req.params.emailId) throw 'you must provide movieID';
+		req.params.emailId = helpers.isValidEmail(req.params.emailId);
+	} catch (e) {
+		return res.status(400).json({ error: e });
+	}
+	try {
+		let val = await patientsData.checkPatientProfile(req.params.emailId);
+		res.json(val);
+	} catch (e) {
+		res.status(404).json({ error: 'Movie not found' });
+	}
+});
 module.exports = router;

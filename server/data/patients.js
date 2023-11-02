@@ -90,7 +90,17 @@ const getAllPatients = async () => {
 	return all_patients;
 };
 
+const checkPatientProfile = async (email) => {
+	const patientscollection = await patients();
+	const patient = await patientscollection.findOne({ emailId: email });
+	if (patient) {
+		return true;
+	}
+	return false;
+};
+
 module.exports = {
 	createPatient,
 	getAllPatients,
+	checkPatientProfile,
 };

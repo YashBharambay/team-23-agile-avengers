@@ -169,3 +169,29 @@ function Patient_Activity(Activity) {
 	}
 	let TActivity = Activity.trim();
 }
+
+const isValidString = (string, parameter) => {
+	if (!string) throw new Error(`You must provide a ${parameter}`);
+	if (typeof string !== 'string')
+		throw new Error(`${parameter} must be a string`);
+	string = string.trim();
+	if (string.length === 0)
+		throw new Error(`${parameter} cannot be an empty string or just spaces`);
+	return string;
+};
+
+const isValidEmail = (email) => {
+	email = isValidString(email, 'Email');
+	if (
+		!email.match(
+			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		)
+	)
+		throw new Error('Invalid Email');
+	return email.toLowerCase();
+};
+
+module.exports = {
+	isValidString,
+	isValidEmail,
+};
