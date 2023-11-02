@@ -1,16 +1,13 @@
 import React, { useContext } from 'react';
 import { Box, Button, Container, Grid, Paper, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
+//import { Navigate } from 'react-router-dom';
 import './landing.css';
-import { AuthContext } from '../firebase/Auth';
+//import { AuthContext } from '../firebase/Auth';
 
 export default function LandingPage() {
-	const { currentUser } = useContext(AuthContext);
+	//const { currentUser } = useContext(AuthContext);
 
-	if (currentUser) {
-		return <Navigate to={`/doctorDashboard`} />;
-	}
 	const pageStyle = {
 		background: 'linear-gradient(135deg, #64B5F6 0%, #1976D2 100%)',
 		minHeight: '100vh',
@@ -52,7 +49,7 @@ export default function LandingPage() {
 							<Box m={2}></Box>
 							<Box>
 								<Button variant="contained" color="primary" size="large">
-									<Link className="showlink" to="/PatientLogin" color="black">
+									<Link className="showlink" to="/PatLogin" color="black">
 										For Patients
 									</Link>
 								</Button>

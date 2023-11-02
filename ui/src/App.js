@@ -7,6 +7,9 @@ import DocLogin from './pages/DocLogin';
 import DocSignUp from './pages/DocSignUp';
 import DoctorDashboard from './pages/DoctorDashboard';
 import PatientDetail from './component/PatientDetailForm/patientDetail';
+import PatLogin from './pages/PatLogin';
+import PatSignUp from './pages/PatSignUp';
+import PatientDashboard from './pages/PatientDashboard';
 
 function App() {
 	return (
@@ -19,6 +22,9 @@ function App() {
 					<Route path="/DocSignUp" element={<DocSignUp />} />
 					<Route path="/DocLogin" element={<DocLogin />} />
 					<Route path="/doctorDashboard" element={<DoctorDashboard />} />
+					<Route path="/PatSignUp" element={<PatSignUp />} />
+					<Route path="/PatLogin" element={<PatLogin />} />
+					<Route path="/patientDashboard" element={<PatientDashboard />} />
 				</Routes>
 			</BrowserRouter>
 		</AuthProvider>
