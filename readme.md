@@ -28,13 +28,17 @@ Install npm dependencies in both the `UI` and `server` sub-directories and also 
 
 # checkout to server and install dependencies
 
+```bash
 cd server
-npm i
+npm install
+```
 
 # checkout to client and install dependencies
 
+```bash
 cd ../ui
-npm i
+npm install
+```
 
 ````
 ### Set up environment variables
