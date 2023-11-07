@@ -5,92 +5,77 @@
 // health data:{  date:  {weight, systolic-blood-pressure, diastolic-blood-pressure, cholesterole, glucose} }
 
 function First_Name(FirstName) {
-	if (typeof FirstName !== 'string') {
-		throw `Input First Name is not a string`;
-	}
-	if (FirstName.trim() == '') {
-		throw `Input for First Name is Empty`;
-	}
-	let TFirst = FirstName.trim();
-	TFirst = FirstName.toLowerCase();
+	const trimmedFirstName = (FirstName || '').trim().toLowerCase();
 	const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/;
 	const numberRegex = /\d/;
-	if (symbolRegex.test(FirstName)) {
-		throw `Invalid input has symbols in first name`;
+
+	if (!trimmedFirstName) {
+		throw new Error('Input First Name is empty or not a string');
 	}
-	if (numberRegex.test(FirstName)) {
-		throw `Invalid input has numbers in first name`;
+
+	if (
+		symbolRegex.test(trimmedFirstName) ||
+		numberRegex.test(trimmedFirstName)
+	) {
+		throw new Error('Invalid input: contains symbols or numbers in first name');
 	}
 }
 
 function Last_Name(LastName) {
-	if (typeof LastName !== 'string') {
-		throw `Input Last Name is not a string`;
-	}
-	if (LastName.trim() == '') {
-		throw `Input for Last Name is Empty`;
-	}
-	let Tlast = LastName.trim();
-	Tlast = Tlast.toLowerCase();
+	const trimmedLastName = (LastName || '').trim().toLowerCase();
 	const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/;
 	const numberRegex = /\d/;
-	if (symbolRegex.test(LastName)) {
-		throw `Invalid input has symbols in Last name`;
+
+	if (!trimmedLastName) {
+		throw new Error('Input Last Name is empty or not a string');
 	}
-	if (numberRegex.test(LastName)) {
-		throw `Invalid input has numbers in Last name`;
+
+	if (symbolRegex.test(trimmedLastName) || numberRegex.test(trimmedLastName)) {
+		throw new Error('Invalid input: contains symbols or numbers in last name');
 	}
 }
 
 function Middle_Name(MiddleName) {
-	if (typeof MiddleName !== 'string') {
-		throw `Input Last Name is not a string`;
-	}
-	if (MiddleName.trim() == '') {
-		throw `Input for Last Name is Empty`;
-	}
-	let TMiddle = MiddleName.trim();
-	TMiddle = TMiddle.toLowerCase();
+	const trimmedMiddleName = (MiddleName || '').trim().toLowerCase();
 	const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/;
 	const numberRegex = /\d/;
-	if (symbolRegex.test(MiddleName)) {
-		throw `Invalid input has symbols in Last name`;
+
+	if (!trimmedMiddleName) {
+		throw new Error('Input Middle Name is empty or not a string');
 	}
-	if (numberRegex.test(MiddleName)) {
-		throw `Invalid input has numbers in Last name`;
+
+	if (
+		symbolRegex.test(trimmedMiddleName) ||
+		numberRegex.test(trimmedMiddleName)
+	) {
+		throw new Error(
+			'Invalid input: contains symbols or numbers in middle name'
+		);
 	}
 }
 
 function Patient_Age(Age) {
-	if (typeof Age !== 'number') {
-		throw `Age input is not a number`;
-	}
-	if (Age <= 0) {
-		throw `Age should be greater than 0`;
-	}
-	if (Age > 999) {
-		throw `Invalid age input`;
+	if (typeof Age !== 'number' || Age <= 0 || Age > 999) {
+		throw new Error('Invalid age input');
 	}
 }
 
 function Patient_Gender(Gender) {
-	if (typeof Gender !== 'string') {
-		throw `Input is not a string`;
+	const LowerGender = (Gender || '').trim().toLowerCase();
+	const validGenders = ['male', 'female'];
+
+	if (
+		!LowerGender ||
+		/[!@#$%^&*(),.?":{}|<>]/.test(LowerGender) ||
+		/\d/.test(LowerGender)
+	) {
+		throw new Error('Invalid gender input');
 	}
-	let LowerGender = Gender.trim();
-	LowerGender = LowerGender.toLowerCase();
-	const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/;
-	const numberRegex = /\d/;
-	if (symbolRegex.test(LowerGender)) {
-		throw `Invalid gender input`;
-	}
-	if (numberRegex.test(LowerGender)) {
-		throw `Invalid gender input`;
-	}
-	if (LowerGender === 'male' || LowerGender === 'female') {
+
+	if (validGenders.includes(LowerGender)) {
 		return true;
 	} else {
-		throw `Invalid gender`;
+		throw new Error('Invalid gender');
 	}
 }
 
@@ -101,86 +86,65 @@ function Patient_Height(Height) {
 }
 
 function Patient_Smoke(Smoke) {
-	if (typeof Smoke !== 'string') {
-		throw `Invalid Input at smoke`;
+	const TSmoke = (Smoke || '').trim().toLowerCase();
+
+	if (!TSmoke || /[!@#$%^&*(),.?":{}|<>]/.test(TSmoke) || /\d/.test(TSmoke)) {
+		throw new Error('Invalid input at smoke');
 	}
-	let TSmoke = Smoke.trim();
-	TSmoke = TSmoke.toLowerCase();
-	const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/;
-	const numberRegex = /\d/;
-	if (symbolRegex.test(TSmoke)) {
-		throw `Invalid input has symbols in Last name`;
-	}
-	if (numberRegex.test(TSmoke)) {
-		throw `Invalid input has numbers in Last name`;
-	}
-	if (TSmoke !== 'no' || TSmoke !== 'yes') {
-		throw `Please enter only Yes ot No answer for smoke`;
+
+	if (TSmoke !== 'no' && TSmoke !== 'yes') {
+		throw new Error('Please enter only Yes or No answer for smoke');
 	}
 }
 
 function Patient_Alcohol(Alcohol) {
-	if (typeof Alcohol !== 'string') {
-		throw `Invalid input for alcohol`;
+	const TAlcohol = (Alcohol || '').trim().toLowerCase();
+
+	if (
+		!TAlcohol ||
+		/[!@#$%^&*(),.?":{}|<>]/.test(TAlcohol) ||
+		/\d/.test(TAlcohol)
+	) {
+		throw new Error('Invalid input for alcohol');
 	}
-	if (Alcohol.trim() == '') {
-		throw `Cannot pass a empty value`;
-	}
-	let TAlcohol = Alcohol.trim();
-	TAlcohol = TAlcohol.toLowerCase();
-	const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/;
-	const numberRegex = /\d/;
-	if (symbolRegex.test(TAlcohol)) {
-		throw `Invalid input has symbols in Last name`;
-	}
-	if (numberRegex.test(TAlcohol)) {
-		throw `Invalid input has numbers in Last name`;
-	}
-	if (TAlcohol !== 'yes' || TAlcohol !== 'no') {
-		throw `Please give a yes or no answer for alcohol`;
+
+	if (TAlcohol !== 'yes' && TAlcohol !== 'no') {
+		throw new Error('Please give a Yes or No answer for alcohol');
 	}
 }
 
 function Patient_Allergies(allergies) {
-	if (typeof allergies !== 'string') {
-		throw `Invalid Allergie Input`;
-	}
-	if (allergies.trim() == '') {
-		throw `Cannot pass empty answer`;
-	}
-	let TAllergies = allergies.trim();
-	TAllergies = TAllergies.toLowerCase();
-	const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/;
-	const numberRegex = /\d/;
-	if (symbolRegex.test(TAllergies)) {
-		throw `Invalid input has symbols in Last name`;
-	}
-	if (numberRegex.test(TAllergies)) {
-		throw `Invalid input has numbers in Last name`;
+	const TAllergies = (allergies || '').trim().toLowerCase();
+
+	if (
+		!TAllergies ||
+		/[!@#$%^&*(),.?":{}|<>]/.test(TAllergies) ||
+		/\d/.test(TAllergies)
+	) {
+		throw new Error('Invalid Allergie Input');
 	}
 }
 
 function Patient_Activity(Activity) {
-	if (typeof Activity !== 'string') {
-		throw `Input is not a string`;
+	const TActivity = (Activity || '').trim();
+
+	if (!TActivity) {
+		throw new Error('Input is not a valid non-empty string');
 	}
-	if (Activity.trim() == '') {
-		throw `cannot pass empty string`;
-	}
-	let TActivity = Activity.trim();
 }
 
-const isValidString = (string, parameter) => {
-	if (!string) throw new Error(`You must provide a ${parameter}`);
-	if (typeof string !== 'string')
-		throw new Error(`${parameter} must be a string`);
-	string = string.trim();
-	if (string.length === 0)
-		throw new Error(`${parameter} cannot be an empty string or just spaces`);
+const IsValidString = (string, parameter) => {
+	if (
+		!string ||
+		typeof string !== 'string' ||
+		(string = string.trim()).length === 0
+	) {
+		throw new Error(`Invalid ${parameter}: ${string || 'empty string'}`);
+	}
 	return string;
 };
 
-const isValidEmail = (email) => {
+const IsValidEmail = (email) => {
 	email = isValidString(email, 'Email');
 	if (
 		!email.match(
@@ -192,6 +156,16 @@ const isValidEmail = (email) => {
 };
 
 module.exports = {
-	isValidString,
-	isValidEmail,
+	IsValidString,
+	IsValidEmail,
+	Patient_Activity,
+	Patient_Allergies,
+	Patient_Alcohol,
+	Patient_Smoke,
+	Patient_Height,
+	Patient_Gender,
+	Patient_Age,
+	Middle_Name,
+	Last_Name,
+	First_Name,
 };
