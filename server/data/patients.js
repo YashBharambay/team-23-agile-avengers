@@ -1,7 +1,5 @@
-const connection = require('../config/mongoConnection');
 const mongoCollections = require('../config/mongocollections');
 const patients = mongoCollections.patients;
-const { ObjectId } = require('mongodb');
 
 const createPatient = async (
 	firstName,
@@ -33,7 +31,7 @@ const createPatient = async (
 ) => {
 	//validation done
 
-	const patientscollection = await patients();
+	const patientsCollection = await patients();
 
 	let newPatient = {
 		firstName: firstName,
@@ -66,37 +64,37 @@ const createPatient = async (
 		insurrance_primarycare_provider: insurrance_primarycare_provider,
 	};
 
-	const insertInfo = await patientscollection.insertOne(newPatient);
+	const insertInfo = await patientsCollection.insertOne(newPatient);
 
 	if (!insertInfo.acknowledged || !insertInfo.insertedId) {
 		throw 'could not add patient';
 	}
 
-	const newID = insertInfo.insertedId.toString();
-	return newID;
+	return insertInfo.insertedId.toString();
 };
 
 const getAllPatients = async () => {
-	const patientscollection = await patients();
-	const all_patients = await patientscollection.find({}).toArray();
-	if (!all_patients) {
+	const patientsCollection = await patients();
+	const allPatients = await patientsCollection.find({}).toArray();
+	if (!allPatients) {
 		throw "can't fetch all movies";
 	}
 
-	all_patients.forEach((element) => {
+	allPatients.forEach((element) => {
 		element._id = element._id.toString();
 	});
 
-	return all_patients;
+	return allPatients;
 };
 
 const checkPatientProfile = async (email) => {
-	const patientscollection = await patients();
-	const patient = await patientscollection.findOne({ emailId: email });
+	const patientsCollection = await patients();
+	const patient = await patientsCollection.findOne({ emailId: email });
 	if (patient) {
 		return true;
+	} else {
+		return false;
 	}
-	return false;
 };
 
 module.exports = {
