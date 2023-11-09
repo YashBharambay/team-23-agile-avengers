@@ -2,10 +2,10 @@ import React, { useState, useContext } from 'react';
 import { TextField, Button } from '@mui/material/';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
-import * as helper from '../helper';
+import * as helper from '../../helper';
 import Alert from '@mui/material/Alert';
-import { doCreateUserWithEmailAndPassword } from '../firebase/functions';
-import { AuthContext } from '../firebase/Auth';
+import { doCreateUserWithEmailAndPassword } from '../../firebase/functions';
+import { AuthContext } from '../../firebase/Auth';
 
 function PatSignUp() {
 	const { currentUser } = useContext(AuthContext);

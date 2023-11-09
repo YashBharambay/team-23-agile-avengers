@@ -3,17 +3,17 @@ import { TextField, Button } from '@mui/material/';
 import Alert from '@mui/material/Alert';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
-import * as helper from '../helper';
+import * as helper from '../../helper';
 import {
 	doSignInWithEmailAndPassword,
 	doPasswordReset,
-} from '../firebase/functions';
-import { AuthContext } from '../firebase/Auth';
+} from '../../firebase/functions';
+import { AuthContext } from '../../firebase/Auth';
 import Divider from '@mui/material/Divider';
-import '../assets/common.css';
-import SocialSignIn from '../component/PatientDetailForm/SocialSignIn';
+import '../../assets/common.css';
+import SocialSignIn from '../../component/PatientDetailForm/SocialSignIn';
 
-function PatLogin() {
+function DocLogin() {
 	const { currentUser } = useContext(AuthContext);
 	const [data, setData] = useState({
 		email: '',
@@ -62,7 +62,7 @@ function PatLogin() {
 	};
 
 	if (currentUser) {
-		return <Navigate to={`/patientDashboard`} />;
+		return <Navigate to={`/doctorDashboard`} />;
 	}
 
 	return (
@@ -155,4 +155,4 @@ function PatLogin() {
 	);
 }
 
-export default PatLogin;
+export default DocLogin;

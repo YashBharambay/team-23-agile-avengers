@@ -5,6 +5,22 @@ import { Link } from 'react-router-dom';
 import './landing.css';
 //import { AuthContext } from '../firebase/Auth';
 
+// Defined color constants
+const PRIMARY_COLOR = 'primary';
+const BLACK_COLOR = 'black';
+
+//Wrote a fucntion that renders the button so that we can manage and use this everywhere.
+function RenderButton(label, color, to) {
+	return (
+		<Box>
+			<Button variant="contained" color={color} size="large">
+				<Link className="showlink" to={to}>
+					{label}
+				</Link>
+			</Button>
+		</Box>
+	);
+}
 export default function LandingPage() {
 	//const { currentUser } = useContext(AuthContext);
 
@@ -39,21 +55,9 @@ export default function LandingPage() {
 							</Typography>
 						</Grid>
 						<Grid item xs={12} align="center">
-							<Box>
-								<Button variant="contained" color="primary" size="large">
-									<Link className="showlink" to="/DocLogin">
-										Doctor
-									</Link>
-								</Button>
-							</Box>
+							{RenderButton('Doctor', PRIMARY_COLOR, '/DocLogin')}
 							<Box m={2}></Box>
-							<Box>
-								<Button variant="contained" color="primary" size="large">
-									<Link className="showlink" to="/PatLogin" color="black">
-										For Patients
-									</Link>
-								</Button>
-							</Box>
+							{RenderButton('For Patients', PRIMARY_COLOR, '/PatientLogin')}
 						</Grid>
 					</Grid>
 				</Container>

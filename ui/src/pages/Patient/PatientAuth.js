@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './PatientAuth.css';
-import PatientDetail from '../component/PatientDetailForm/patientDetail';
+import PatientDetail from '../../component/PatientDetailForm/patientDetail';
 
 export default function PatientAuth() {
 	return (
