@@ -2,14 +2,14 @@ import './App.css';
 import { AuthProvider } from './firebase/Auth';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/landing';
-import PatientAuth from './pages/PatientAuth';
-import DocLogin from './pages/DocLogin';
-import DocSignUp from './pages/DocSignUp';
-import DoctorDashboard from './pages/DoctorDashboard';
+import PatientAuth from './pages/Patient/PatientAuth';
 import PatientDetail from './component/PatientDetailForm/patientDetail';
-import PatLogin from './pages/PatLogin';
-import PatSignUp from './pages/PatSignUp';
-import PatientDashboard from './pages/PatientDashboard';
+import DocSignUp from './pages/Doctor/DocSignUp';
+import DocLogin from './pages/Doctor/DocLogin';
+import DoctorDashboard from './pages/Doctor/DoctorDashboard';
+import PatSignUp from './pages/Patient/PatSignUp';
+import PatLogin from './pages/Patient/PatLogin';
+import PatientDashboard from './pages/Patient/PatientDashboard';
 
 function App() {
 	return (

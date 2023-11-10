@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Button } from '@mui/material/';
-import { doSignOut } from '../firebase/functions';
-import { AuthContext } from '../firebase/Auth';
+import { doSignOut } from '../../firebase/functions';
+import { AuthContext } from '../../firebase/Auth';
 import { Navigate } from 'react-router-dom';
 
 export default function PatientDashboard() {
