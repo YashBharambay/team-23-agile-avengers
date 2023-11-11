@@ -145,7 +145,7 @@ const IsValidString = (string, parameter) => {
 };
 
 const IsValidEmail = (email) => {
-	email = isValidString(email, 'Email');
+	email = IsValidString(email, 'Email');
 	if (
 		!email.match(
 			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

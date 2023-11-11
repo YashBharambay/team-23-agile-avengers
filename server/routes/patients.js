@@ -55,7 +55,7 @@ router
 router.route('/:emailId').get(async (req, res) => {
 	try {
 		if (!req.params.emailId) throw 'you must provide movieID';
-		req.params.emailId = helpers.isValidEmail(req.params.emailId);
+		req.params.emailId = helpers.IsValidEmail(req.params.emailId);
 	} catch (e) {
 		return res.status(400).json({ error: e });
 	}
