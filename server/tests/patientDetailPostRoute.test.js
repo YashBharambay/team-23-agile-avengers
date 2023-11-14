@@ -37,7 +37,7 @@ describe('POST route tests', () => {
 	});
 
 	it('should handle validation and return a 400 status code for invalid data', async () => {
-		const response = await request(app).post('/doctors').send({
+		const response = await request(app).post('/patientssss').send({
 			firstame: 'firstName',
 			middleName: 'middleName',
 			lastName: 'lastName',
