@@ -63,7 +63,7 @@ router.route('/:emailId').get(async (req, res) => {
 		let val = await patientsData.checkPatientProfile(req.params.emailId);
 		res.json(val);
 	} catch (e) {
-		res.status(404).json({ error: 'Movie not found' });
+		res.status(404).json({ error: 'Patient not found' });
 	}
 });
 module.exports = router;
