@@ -136,7 +136,7 @@ function PatLogin() {
 					<br />
 					<div>
 						<small>
-							Don't have an account? <Link to="/DocSignUp">Register</Link>
+							Don't have an account? <Link to="/PatSignUp">Register</Link>
 						</small>
 						<br />
 						<small>

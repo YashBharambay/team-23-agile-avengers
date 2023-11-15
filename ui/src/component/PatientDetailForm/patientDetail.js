@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../PatientDetailForm/patientDetail.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
 import {
 	Button,
 	FormControl,
@@ -11,9 +12,22 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import toast, { Toaster } from 'react-hot-toast';
+import { AuthContext } from '../../firebase/Auth';
 
 export default function PatientDetail() {
 	const [formData, setFormData] = useState({});
+	const { currentUser } = useContext(AuthContext);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (currentUser) {
+			console.log('in useeffect doctordetail');
+			setFormData({
+				...formData,
+				emailId: currentUser.email,
+			});
+		}
+	}, [currentUser]);
 
 	const handleInputChange = (e) => {
 		// Update the form data in the state when input values change
@@ -49,6 +63,7 @@ export default function PatientDetail() {
 			if (response.ok) {
 				toast.success('Successfully submitted!');
 				console.log('Form data submitted successfully');
+				navigate('/patientDashboard');
 			} else {
 				console.error('Error submitting form data');
 			}
@@ -102,7 +117,7 @@ export default function PatientDetail() {
 					<TextField
 						id="emailId"
 						label="Email Id "
-						defaultValue={formData['emailId'] || ''}
+						defaultValue={currentUser.email}
 						onChange={handleInputChange}
 						required
 					/>
