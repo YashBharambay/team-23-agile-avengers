@@ -3,6 +3,7 @@ import { Button } from '@mui/material/';
 import { doSignOut } from '../../firebase/functions';
 import { AuthContext } from '../../firebase/Auth';
 import { Navigate } from 'react-router-dom';
+import Prediction from '../../component/prediction_analysis';
 
 export default function PatientDashboard() {
 	const { currentUser } = useContext(AuthContext);
@@ -15,6 +16,7 @@ export default function PatientDashboard() {
 		<div className="main">
 			<div>
 				<h1>Patient dashboard</h1>
+				<Prediction />
 				<Button
 					variant="outlined"
 					color="secondary"

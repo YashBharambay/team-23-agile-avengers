@@ -18,6 +18,16 @@ router
 		let patientInfo = req.body;
 
 		try {
+			helpers.First_Name(patientInfo.firstName);
+			helpers.Last_Name(patientInfo.lastName);
+			helpers.IsValidEmail(patientInfo.emailId);
+		} catch (error) {
+			console.log(error.message);
+			res.status(400).json({ error: error.message });
+			return;
+		}
+
+		try {
 			const newPatient = await patientsData.createPatient(
 				patientInfo.firstName,
 				patientInfo.middleName,
@@ -30,6 +40,8 @@ router
 				patientInfo.alcohol,
 				patientInfo.activity,
 				patientInfo.allergies,
+				patientInfo.cholestrol,
+				patientInfo.glucose,
 				patientInfo.symptoms,
 				patientInfo.other_complaints,
 				patientInfo.medications,

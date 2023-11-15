@@ -5,6 +5,7 @@ import { AuthContext } from '../../firebase/Auth';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Typography, CircularProgress } from '@mui/material';
+import Prediction from '../../component/prediction_analysis';
 
 export default function DoctorDashboard() {
 	const { currentUser } = useContext(AuthContext);
@@ -48,6 +49,7 @@ export default function DoctorDashboard() {
 				) : hasProfile ? (
 					<>
 						<h1>doctors dashboard</h1>
+						<Prediction />
 						<h2>{currentUser.email}</h2>
 						<Button
 							variant="outlined"
