@@ -3,7 +3,7 @@ import { Button } from '@mui/material/';
 import { doSignOut } from '../../firebase/functions';
 import { AuthContext } from '../../firebase/Auth';
 import { Navigate } from 'react-router-dom';
-import Prediction from '../../component/prediction_analysis';
+import Prediction from '../../component/PredictionAnalysis/prediction_analysis';
 
 export default function PatientDashboard() {
 	const { currentUser } = useContext(AuthContext);

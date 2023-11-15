@@ -5,7 +5,7 @@ import { AuthContext } from '../../firebase/Auth';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Typography, CircularProgress } from '@mui/material';
-import Prediction from '../../component/prediction_analysis';
+import Prediction from '../../component/PredictionAnalysis/prediction_analysis';
 
 export default function DoctorDashboard() {
 	const { currentUser } = useContext(AuthContext);

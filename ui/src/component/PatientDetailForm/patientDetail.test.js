@@ -18,14 +18,14 @@ test('renders First Name field', () => {
 
 test('Age field accepts only numbers', () => {
 	render(<PatientDetail />);
-	const ageInput = screen.getByLabelText('Age');
+	const ageInput = screen.getByLabelText(/Age/i);
 	fireEvent.change(ageInput, { target: { value: 'abc' } }); //Entered NonNumber
 	expect(ageInput.value).toBe(''); // Value should be an empty string after invalid input
 });
 
 test('Age field accepts numeric input', () => {
 	render(<PatientDetail />);
-	const ageInput = screen.getByLabelText('Age');
+	const ageInput = screen.getByLabelText(/Age/i);
 	fireEvent.change(ageInput, { target: { value: '25' } }); //Enter Number
 	expect(ageInput.value).toBe('25'); // Value should remain as '25'
 });

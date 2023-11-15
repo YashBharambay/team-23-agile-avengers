@@ -203,7 +203,7 @@ export default function PatientDetail() {
 							id="demo-simple-select"
 							label="Gender"
 							onChange={handleInputChange}
-							value={formData.gender}
+							value={formData.gender || ''}
 							name="gender"
 						>
 							<MenuItem value={1}>Male</MenuItem>
@@ -232,7 +232,7 @@ export default function PatientDetail() {
 							id="demo-simple-select"
 							label="Smoke"
 							onChange={handleInputChange}
-							value={formData.smoke}
+							value={formData.smoke || ''}
 							name="smoke"
 						>
 							<MenuItem value={1}>Yes</MenuItem>
@@ -247,7 +247,7 @@ export default function PatientDetail() {
 							id="demo-simple-select"
 							label="alcohol"
 							onChange={handleInputChange}
-							value={formData.alcohol}
+							value={formData.alcohol || ''}
 							name="alcohol"
 						>
 							<MenuItem value={1}>Yes</MenuItem>
@@ -263,7 +263,7 @@ export default function PatientDetail() {
 							label="activity"
 							placeholder="If you do medium to less activity select Low otherwise select high"
 							onChange={handleInputChange}
-							value={formData.activity}
+							value={formData.activity || ''}
 							name="activity"
 						>
 							<MenuItem value={1}>High</MenuItem>
@@ -279,7 +279,7 @@ export default function PatientDetail() {
 							label="cholestrol"
 							placeholder="Your cholestrol level"
 							onChange={handleInputChange}
-							value={formData.cholestrol}
+							value={formData.cholestrol || ''}
 							name="cholestrol"
 						>
 							<MenuItem value={3}>High</MenuItem>
@@ -297,7 +297,7 @@ export default function PatientDetail() {
 							label="glucose"
 							placeholder="Your glucose level"
 							onChange={handleInputChange}
-							value={formData.glucose}
+							value={formData.glucose || ''}
 							name="glucose"
 						>
 							<MenuItem value={3}>High</MenuItem>
