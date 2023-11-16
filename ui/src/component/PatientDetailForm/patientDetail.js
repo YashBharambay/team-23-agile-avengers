@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../PatientDetailForm/patientDetail.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
 import {
 	Button,
 	FormControl,
@@ -11,6 +12,7 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import toast, { Toaster } from 'react-hot-toast';
+import { AuthContext } from '../../firebase/Auth';
 
 export default function PatientDetail() {
 	const [formData, setFormData] = useState({
@@ -43,6 +45,18 @@ export default function PatientDetail() {
 		insurrance_plan_type: '',
 		insurrance_primarycare_provider: '',
 	});
+	const { currentUser } = useContext(AuthContext);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (currentUser) {
+			console.log('in useeffect doctordetail');
+			setFormData({
+				...formData,
+				emailId: currentUser.email,
+			});
+		}
+	}, [currentUser]);
 
 	const clearForm = () => {
 		setFormData({
@@ -76,7 +90,6 @@ export default function PatientDetail() {
 			insurrance_primarycare_provider: '',
 		});
 	};
-
 	const handleInputChange = (e) => {
 		// Update the form data in the state when input values change
 		const { name, value } = e.target;
@@ -87,7 +100,6 @@ export default function PatientDetail() {
 			[name]: value,
 		});
 	};
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// if (!formData.firstName || !formData.emailId) {
@@ -111,6 +123,7 @@ export default function PatientDetail() {
 				toast.success('Successfully submitted!');
 				clearForm();
 				console.log('Form data submitted successfully');
+				navigate('/patientDashboard');
 			} else {
 				const errorData = await response.json();
 				toast.error(`Error: ${errorData.error}`);
@@ -160,16 +173,15 @@ export default function PatientDetail() {
 					<TextField
 						name="lastName"
 						label="Last Name"
-						value={formData.lastName}
+						defaultValue={formData['lastName'] || ''}
 						onChange={handleInputChange}
-						required
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						name="emailId"
+						id="emailId"
 						label="Email Id "
-						value={formData.emailId}
+						defaultValue={currentUser.email}
 						onChange={handleInputChange}
 						required
 					/>

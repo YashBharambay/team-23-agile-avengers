@@ -57,7 +57,7 @@ export default function LandingPage() {
 						<Grid item xs={12} align="center">
 							{RenderButton('Doctor', PRIMARY_COLOR, '/DocLogin')}
 							<Box m={2}></Box>
-							{RenderButton('For Patients', PRIMARY_COLOR, '/PatientLogin')}
+							{RenderButton('For Patients', PRIMARY_COLOR, '/PatLogin')}
 						</Grid>
 					</Grid>
 				</Container>

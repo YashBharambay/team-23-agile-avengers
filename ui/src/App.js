@@ -3,7 +3,6 @@ import { AuthProvider } from './firebase/Auth';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/landing';
 import PatientAuth from './pages/Patient/PatientAuth';
-import PatientDetail from './component/PatientDetailForm/patientDetail';
 import DocSignUp from './pages/Doctor/DocSignUp';
 import DocLogin from './pages/Doctor/DocLogin';
 import DoctorDashboard from './pages/Doctor/DoctorDashboard';
@@ -21,8 +20,7 @@ function App() {
 				<BrowserRouter>
 					<Routes>
 						<Route path="/" element={<LandingPage />} />
-						<Route path="/PatientLogin" element={<PatientAuth />} />
-						<Route path="/PatientDetailsForm" element={<PatientDetail />} />
+						<Route path="/PatientDetailsForm" element={<PatientAuth />} />
 						<Route path="/DocSignUp" element={<DocSignUp />} />
 						<Route path="/DocLogin" element={<DocLogin />} />
 						<Route path="/doctorDashboard" element={<DoctorDashboard />} />
