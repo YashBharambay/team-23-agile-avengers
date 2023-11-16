@@ -1,6 +1,28 @@
+import {
+	Button,
+	Container,
+	Grid,
+	TextField,
+	Typography,
+	styled,
+} from '@mui/material';
 import React, { useState } from 'react';
 
 const Prediction = () => {
+	const PredictionContainer = styled(Container)({
+		marginTop: (theme) => theme.spacing(4),
+	});
+
+	const FormContainer = styled('form')({
+		'& .MuiTextField-root': {
+			margin: (theme) => theme.spacing(2),
+			width: '25ch',
+		},
+	});
+
+	const SubmitButton = styled(Button)({
+		marginTop: (theme) => theme.spacing(2),
+	});
 	const [prediction, setPrediction] = useState(null);
 	const [formData, setFormData] = useState({
 		age: '',
@@ -59,33 +81,39 @@ const Prediction = () => {
 	};
 
 	return (
-		<div>
-			<h1>Cardio Vascular Disorder Prediction</h1>
-			<form onSubmit={handleSubmit}>
-				{/* Render your form inputs here */}
-				<label>
-					Age:
-					<input
-						type="text"
-						name="age"
-						value={formData.age}
-						onChange={handleInputChange}
-					/>
-				</label>
-				{/* Add other form inputs similarly */}
-				<button type="submit">Predict</button>
-			</form>
-
+		<PredictionContainer>
+			<Typography variant="h4" gutterBottom>
+				Cardio Vascular Disorder Prediction
+			</Typography>
+			<FormContainer onSubmit={handleSubmit}>
+				<Grid container spacing={2}>
+					<Grid item xs={12}>
+						<TextField
+							label="Age"
+							name="age"
+							variant="outlined"
+							fullWidth
+							value={formData.age}
+							onChange={handleInputChange}
+						/>
+					</Grid>
+				</Grid>
+				<SubmitButton type="submit" variant="contained" color="primary">
+					Predict
+				</SubmitButton>
+			</FormContainer>
 			{prediction !== null && (
 				<div>
-					<h2>Prediction Result:</h2>
-					<p>
+					<Typography variant="h6" gutterBottom>
+						Prediction Result:
+					</Typography>
+					<Typography>
 						{prediction === 1 ? 'High Probability' : 'Lower Probability'} of
 						Cardio Vascular Disorder
-					</p>
+					</Typography>
 				</div>
 			)}
-		</div>
+		</PredictionContainer>
 	);
 };
 

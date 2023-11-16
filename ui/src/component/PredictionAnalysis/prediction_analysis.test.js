@@ -22,7 +22,7 @@ test('Prediction renders without errors', () => {
 
 test('updates state when input values change', () => {
 	render(<Prediction />);
-	const ageInput = screen.getByLabelText('Age:');
+	const ageInput = screen.getByLabelText('Age');
 
 	fireEvent.change(ageInput, { target: { value: '30' } });
 
