@@ -5,6 +5,7 @@ import { AuthContext } from '../../firebase/Auth';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Typography, CircularProgress } from '@mui/material';
+import Prediction from '../../component/PredictionAnalysis/prediction_analysis';
 
 export default function PatientDashboard() {
 	const { currentUser } = useContext(AuthContext);
@@ -38,29 +39,16 @@ export default function PatientDashboard() {
 	return (
 		<div className="main">
 			<div>
-				{loading ? (
-					<div style={{ display: 'flex', alignItems: 'center' }}>
-						<CircularProgress size={40} color="secondary" />
-						<Typography variant="body1" style={{ marginLeft: 10 }}>
-							Loading...
-						</Typography>
-					</div>
-				) : hasProfile ? (
-					<>
-						<h1>patient dashboard</h1>
-						<h2>{currentUser.email}</h2>
-						<Button
-							variant="outlined"
-							color="secondary"
-							onClick={doSignOut} // Call handleSignUp on button click
-							style={{ marginTop: '1em' }}
-						>
-							Sign Out
-						</Button>
-					</>
-				) : (
-					<Navigate to={`/PatientDetailsForm`} />
-				)}
+				<h1>Patient dashboard</h1>
+				<Prediction />
+				<Button
+					variant="outlined"
+					color="secondary"
+					onClick={doSignOut} // Call handleSignUp on button click
+					style={{ marginTop: '1em' }}
+				>
+					Sign Out
+				</Button>
 			</div>
 		</div>
 	);
