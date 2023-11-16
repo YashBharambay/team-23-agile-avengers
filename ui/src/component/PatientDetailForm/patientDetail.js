@@ -13,31 +13,91 @@ import Grid from '@mui/material/Grid';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function PatientDetail() {
-	const [formData, setFormData] = useState({});
+	const [formData, setFormData] = useState({
+		firstName: '',
+		lastName: '',
+		middleName: '',
+		emailId: '',
+		age: '',
+		gender: null,
+		height: '',
+		smoke: null,
+		alcohol: null,
+		activity: null,
+		allergies: '',
+		cholestrol: null,
+		glucose: null,
+		symptoms: '',
+		other_complaints: '',
+		medications: '',
+		contact_address_line: '',
+		contact_address_line_2: '',
+		contact_city: '',
+		contact_zip_code: '',
+		contact_state: '',
+		contact_number: '',
+		emergencey_contact_number: '',
+		emergencey_contact_name: '',
+		insurrance_member_id: '',
+		insurrance_group_number: '',
+		insurrance_plan_type: '',
+		insurrance_primarycare_provider: '',
+	});
+
+	const clearForm = () => {
+		setFormData({
+			firstName: '',
+			lastName: '',
+			middleName: '',
+			emailId: '',
+			age: '',
+			gender: null,
+			height: '',
+			smoke: null,
+			alcohol: null,
+			activity: null,
+			allergies: '',
+			cholestrol: null,
+			glucose: null,
+			symptoms: '',
+			other_complaints: '',
+			medications: '',
+			contact_address_line: '',
+			contact_address_line_2: '',
+			contact_city: '',
+			contact_zip_code: '',
+			contact_state: '',
+			contact_number: '',
+			emergencey_contact_number: '',
+			emergencey_contact_name: '',
+			insurrance_member_id: '',
+			insurrance_group_number: '',
+			insurrance_plan_type: '',
+			insurrance_primarycare_provider: '',
+		});
+	};
 
 	const handleInputChange = (e) => {
 		// Update the form data in the state when input values change
 		const { name, value } = e.target;
-		if (name === 'smoke' || name === 'alcohol') {
-			setFormData({ ...formData, [name]: parseInt(value) });
-		} else {
-			setFormData({ ...formData, [name]: value });
-		}
-
+		let { type } = e.target;
 		setFormData({
 			...formData,
-			[e.target.id]: e.target.value,
+			// [name]: type === 'number' ? parseInt(value, 10) : value,
+			[name]: value,
 		});
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!formData.firstName) {
-			toast.error('First Name is required');
-			return;
-		}
+		// if (!formData.firstName || !formData.emailId) {
+		// 	console.log('did it come herer?');
+		// 	toast.error('Please fill the required fields');
+		// 	return;
+		// }
 
 		try {
+			console.log(formData, 'payload');
 			const response = await fetch('http://localhost:3002/patients', {
 				method: 'POST',
 				headers: {
@@ -46,13 +106,18 @@ export default function PatientDetail() {
 				body: JSON.stringify(formData),
 			});
 
+			console.log(response);
 			if (response.ok) {
 				toast.success('Successfully submitted!');
+				clearForm();
 				console.log('Form data submitted successfully');
 			} else {
-				console.error('Error submitting form data');
+				const errorData = await response.json();
+				toast.error(`Error: ${errorData.error}`);
+				console.error('Error submitting form data:', errorData.error);
 			}
 		} catch (error) {
+			toast.error(`Error: ${error.message}`);
 			console.error('Error:', error);
 		}
 	};
@@ -76,66 +141,87 @@ export default function PatientDetail() {
 				<Grid item xs={6}>
 					<TextField
 						id="firstName"
-						label="First Name "
-						defaultValue={formData['firstName'] || ''}
+						label="First Name"
+						name="firstName"
+						value={formData.firstName}
 						onChange={handleInputChange}
 						required
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="middleName"
+						name="middleName"
 						label="Middle Name"
-						defaultValue={formData['middleName'] || ''}
+						value={formData.middleName}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="lastName"
+						name="lastName"
 						label="Last Name"
-						defaultValue={formData['lastName'] || ''}
-						onChange={handleInputChange}
-					/>
-				</Grid>
-				<Grid item xs={6}>
-					<TextField
-						id="emailId"
-						label="Email Id "
-						defaultValue={formData['emailId'] || ''}
+						value={formData.lastName}
 						onChange={handleInputChange}
 						required
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="age"
+						name="emailId"
+						label="Email Id "
+						value={formData.emailId}
+						onChange={handleInputChange}
+						required
+					/>
+				</Grid>
+				<Grid item xs={6}>
+					<TextField
+						name="age"
 						label="Age"
 						type="number"
 						InputLabelProps={{
 							shrink: true,
 						}}
-						defaultValue={formData['age'] || ''}
+						value={formData.age}
 						onChange={handleInputChange}
+						required
 					/>
 				</Grid>
-				<Grid item xs={6}>
+				{/* <Grid item xs={6}>
 					<TextField
 						id="gender"
 						label="Gender"
-						defaultValue={formData['gender'] || ''}
+						value={}''}
 						onChange={handleInputChange}
+						required
 					/>
+				</Grid> */}
+				<Grid item xs={6}>
+					<FormControl sx={{ minWidth: '80%' }}>
+						<InputLabel id="gender">Gender</InputLabel>
+						<Select
+							id="demo-simple-select"
+							label="Gender"
+							onChange={handleInputChange}
+							value={formData.gender || ''}
+							name="gender"
+						>
+							<MenuItem value={1}>Male</MenuItem>
+							<MenuItem value={0}>Female</MenuItem>
+						</Select>
+					</FormControl>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
 						id="height"
 						label="Height"
+						name="height"
 						type="number"
+						placeholder="Height should be in format (num.num)"
 						InputLabelProps={{
 							shrink: true,
 						}}
-						defaultValue={formData['height'] || ''}
+						value={formData.height}
 						onChange={handleInputChange}
 					/>
 				</Grid>
@@ -146,7 +232,7 @@ export default function PatientDetail() {
 							id="demo-simple-select"
 							label="Smoke"
 							onChange={handleInputChange}
-							value={formData.smoke}
+							value={formData.smoke || ''}
 							name="smoke"
 						>
 							<MenuItem value={1}>Yes</MenuItem>
@@ -161,7 +247,7 @@ export default function PatientDetail() {
 							id="demo-simple-select"
 							label="alcohol"
 							onChange={handleInputChange}
-							value={formData.alcohol}
+							value={formData.alcohol || ''}
 							name="alcohol"
 						>
 							<MenuItem value={1}>Yes</MenuItem>
@@ -170,42 +256,95 @@ export default function PatientDetail() {
 					</FormControl>
 				</Grid>
 				<Grid item xs={6}>
+					<FormControl sx={{ minWidth: '80%' }}>
+						<InputLabel id="activity">Activity</InputLabel>
+						<Select
+							id="activity"
+							label="activity"
+							placeholder="If you do medium to less activity select Low otherwise select high"
+							onChange={handleInputChange}
+							value={formData.activity || ''}
+							name="activity"
+						>
+							<MenuItem value={1}>High</MenuItem>
+							<MenuItem value={0}>Low</MenuItem>
+						</Select>
+					</FormControl>
+				</Grid>
+				<Grid item xs={6}>
+					<FormControl sx={{ minWidth: '80%' }}>
+						<InputLabel id="cholestrol">Cholesterol</InputLabel>
+						<Select
+							id="cholestrol"
+							label="cholestrol"
+							placeholder="Your cholestrol level"
+							onChange={handleInputChange}
+							value={formData.cholestrol || ''}
+							name="cholestrol"
+						>
+							<MenuItem value={3}>High</MenuItem>
+							<MenuItem value={2}>Medium</MenuItem>
+							<MenuItem value={1}>Low</MenuItem>
+							<MenuItem value={0}>No</MenuItem>
+						</Select>
+					</FormControl>
+				</Grid>
+				<Grid item xs={6}>
+					<FormControl sx={{ minWidth: '80%' }}>
+						<InputLabel id="glucose">Glucose</InputLabel>
+						<Select
+							id="glucose"
+							label="glucose"
+							placeholder="Your glucose level"
+							onChange={handleInputChange}
+							value={formData.glucose || ''}
+							name="glucose"
+						>
+							<MenuItem value={3}>High</MenuItem>
+							<MenuItem value={2}>Medium</MenuItem>
+							<MenuItem value={1}>Low</MenuItem>
+						</Select>
+					</FormControl>
+				</Grid>
+				{/* <Grid item xs={6}>
 					<TextField
 						id="activity"
 						label="Activity"
-						defaultValue={formData['activity'] || ''}
+						value={}| ''}
 						onChange={handleInputChange}
 					/>
-				</Grid>
+				</Grid> */}
 				<Grid item xs={6}>
 					<TextField
 						id="allergies"
+						name="allergies"
 						label="Allergies"
-						defaultValue={formData['allergies'] || ''}
+						value={formData.allergies}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
 						id="symptoms"
+						name="symptoms"
 						label="Symtoms"
-						defaultValue={formData['symptoms'] || ''}
+						value={formData.symptoms}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="other_complaints"
+						name="other_complaints"
 						label="Other Complaints"
-						defaultValue={formData['other_complaints'] || ''}
+						value={formData.other_complaints}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="medications"
+						name="medications"
 						label="Medications"
-						defaultValue={formData['medications'] || ''}
+						value={formData.medications}
 						onChange={handleInputChange}
 					/>
 				</Grid>
@@ -216,49 +355,49 @@ export default function PatientDetail() {
 			<Grid container spacing={2}>
 				<Grid item xs={6}>
 					<TextField
-						id="contact_address_line"
+						name="contact_address_line"
 						label="Address Line"
-						defaultValue={formData['contact_address_line'] || ''}
+						value={formData.contact_address_line}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="contact_address_line_2"
+						name="contact_address_line_2"
 						label="Address Line 2"
-						defaultValue={formData['contact_address_line_2'] || ''}
+						value={formData.contact_address_line_2}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="contact_city"
+						name="contact_city"
 						label="City"
-						defaultValue={formData['contact_city'] || ''}
+						value={formData.contact_city}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="contact_zip_code"
+						name="contact_zip_code"
 						label="ZipCode"
-						defaultValue={formData['contact_zip_code'] || ''}
+						value={formData.contact_zip_code}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="contact_state"
+						name="contact_state"
 						label="State"
-						defaultValue={formData['contact_state'] || ''}
+						value={formData.contact_state}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="contact_number"
+						name="contact_number"
 						label="Contact Numner"
-						defaultValue={formData['contact_number'] || ''}
+						value={formData.contact_number}
 						onChange={handleInputChange}
 					/>
 				</Grid>
@@ -269,17 +408,17 @@ export default function PatientDetail() {
 			<Grid container spacing={2}>
 				<Grid item xs={6}>
 					<TextField
-						id="emergencey_contact_number"
-						label="Emergencey Contact Numner"
-						defaultValue={formData['emergencey_contact_number'] || ''}
+						name="emergencey_contact_number"
+						label="Emergencey Contact Number"
+						value={formData.emergencey_contact_number}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="emergencey_contact_name"
+						name="emergencey_contact_name"
 						label="Emergency Contact Name"
-						defaultValue={formData['emergencey_contact_name'] || ''}
+						value={formData.emergencey_contact_name}
 						onChange={handleInputChange}
 					/>
 				</Grid>
@@ -290,33 +429,33 @@ export default function PatientDetail() {
 			<Grid container spacing={2}>
 				<Grid item xs={6}>
 					<TextField
-						id="insurrance_member_id"
+						name="insurrance_member_id"
 						label="Insurance MemberId"
-						defaultValue={formData['insurrance_member_id'] || ''}
+						value={formData.insurrance_member_id}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="insurrance_group_number"
+						name="insurrance_group_number"
 						label="Insurance Group No"
-						defaultValue={formData['insurrance_group_number'] || ''}
+						value={formData.insurrance_group_number}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="insurrance_plan_type"
+						name="insurrance_plan_type"
 						label="Insurance Plan Type"
-						defaultValue={formData['insurrance_plan_type'] || ''}
+						value={formData.insurrance_plan_type}
 						onChange={handleInputChange}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
-						id="insurrance_primarycare_provider"
+						name="insurrance_primarycare_provider"
 						label="Care Provider"
-						defaultValue={formData['insurrance_primarycare_provider'] || ''}
+						value={formData.insurrance_primarycare_provider}
 						onChange={handleInputChange}
 					/>
 				</Grid>

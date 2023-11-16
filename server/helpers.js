@@ -25,7 +25,6 @@ function Last_Name(LastName) {
 	const trimmedLastName = (LastName || '').trim().toLowerCase();
 	const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/;
 	const numberRegex = /\d/;
-
 	if (!trimmedLastName) {
 		throw new Error('Input Last Name is empty or not a string');
 	}
@@ -146,11 +145,7 @@ const IsValidString = (string, parameter) => {
 
 const IsValidEmail = (email) => {
 	email = IsValidString(email, 'Email');
-	if (
-		!email.match(
-			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-		)
-	)
+	if (!email.match(/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/g))
 		throw new Error('Invalid Email');
 	return email.toLowerCase();
 };
