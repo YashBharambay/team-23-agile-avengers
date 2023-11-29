@@ -1,0 +1,16 @@
+{
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnPaste": true,
+	"prettier.useTabs": true,
+	"prettier.singleQuote": true,
+	"files.eol": "\n",
+	"eslint.workingDirectories": [
+		"./client",
+		"./server"
+	],
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.autopep8"
+	},
+	"python.formatting.provider": "none"
+}
