@@ -58,6 +58,8 @@ export default function LandingPage() {
 							{RenderButton('Doctor', PRIMARY_COLOR, '/DocLogin')}
 							<Box m={2}></Box>
 							{RenderButton('For Patients', PRIMARY_COLOR, '/PatLogin')}
+							<Box m={2}></Box>
+							{RenderButton('Personal Assistant', PRIMARY_COLOR, '/PALogin')}
 						</Grid>
 					</Grid>
 				</Container>

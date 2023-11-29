@@ -1,0 +1,31 @@
+body {
+	background-color: black;
+}
+
+.App {
+	text-align: center;
+	position: relative;
+}
+
+.center-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%; /* Take up full height to center vertically */
+}
+
+.emoji-container {
+	font-size: 35vw; /* Increase the emoji size */
+}
+
+.emoji-name {
+	font-size: 2rem;
+	color: white;
+}
+
+.top-right-button {
+	position: relative;
+	top: 1vw;
+	left: 35vw;
+}

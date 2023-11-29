@@ -10,6 +10,9 @@ import PatSignUp from './pages/Patient/PatSignUp';
 import PatLogin from './pages/Patient/PatLogin';
 import PatientDashboard from './pages/Patient/PatientDashboard';
 import DoctorAuth from './pages/Doctor/DoctorAuth';
+import PADashboard from './pages/Personal Assistant/PADashboard';
+import PASignUp from './pages/Personal Assistant/PASignUp';
+import PALogin from './pages/Personal Assistant/PALogin';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
@@ -28,6 +31,9 @@ function App() {
 						<Route path="/PatLogin" element={<PatLogin />} />
 						<Route path="/patientDashboard" element={<PatientDashboard />} />
 						<Route path="/DoctorDetailsForm" element={<DoctorAuth />} />
+						<Route path="/PASignUp" element={<PASignUp />} />
+						<Route path="/PALogin" element={<PALogin />} />
+						<Route path="/PADashboard" element={<PADashboard />} />
 					</Routes>
 				</BrowserRouter>
 			</LocalizationProvider>
