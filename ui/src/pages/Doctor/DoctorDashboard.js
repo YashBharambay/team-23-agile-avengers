@@ -6,6 +6,7 @@ import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Typography, CircularProgress } from '@mui/material';
 import Prediction from '../../component/PredictionAnalysis/prediction_analysis';
+import Navbar from '../../component/Navbar';
 
 export default function DoctorDashboard() {
 	const { currentUser } = useContext(AuthContext);
@@ -48,8 +49,8 @@ export default function DoctorDashboard() {
 					</div>
 				) : hasProfile ? (
 					<>
-						<h1>doctors dashboard</h1>
 						<Prediction />
+						{/* <h1>doctors dashboard</h1> */}
 						<h2>{currentUser.email}</h2>
 						<Button
 							variant="outlined"
@@ -66,38 +67,4 @@ export default function DoctorDashboard() {
 			</div>
 		</div>
 	);
-
-	// return (
-	// 	<div className="main">
-	// 		<div>
-	// 			{ loading
-	// 			? (
-	// 				<div style={{ display: 'flex', alignItems: 'center' }}>
-	// 					<CircularProgress size={40} color="secondary" />
-	// 					<Typography variant="body1" style={{ marginLeft: 10 }}>
-	// 						Loading...
-	// 					</Typography>
-	// 				</div>
-	// 			)
-	// 			:
-	// 			(hasProfile ? (
-	// 				<>
-	// 					<h1>doctors dashboard</h1>
-	// 					<Button
-	// 						variant="outlined"
-	// 						color="secondary"
-	// 						onClick={doSignOut} // Call handleSignUp on button click
-	// 						style={{ marginTop: '1em' }}
-	// 					>
-	// 						Sign Out
-	// 					</Button>
-	// 				</>
-	// 			) : (
-	// 				<Navigate to={`/DoctorDetailsForm`} />
-	// 			))
-
-	// 		}
-	// 		</div>
-	// 	</div>
-	// );
 }
