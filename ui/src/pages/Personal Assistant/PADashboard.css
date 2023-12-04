@@ -1,5 +1,5 @@
 body {
-	background-color: black;
+	background-color: white;
 }
 
 .App {
@@ -16,12 +16,12 @@ body {
 }
 
 .emoji-container {
-	font-size: 35vw; /* Increase the emoji size */
+	font-size: 30vw; /* Increase the emoji size */
 }
 
 .emoji-name {
 	font-size: 2rem;
-	color: white;
+	color: black;
 }
 
 .top-right-button {
