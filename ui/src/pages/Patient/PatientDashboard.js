@@ -63,8 +63,8 @@ export default function PatientDashboard() {
 		console.log('in load');
 		try {
 			if (currentUser) {
-				fetchData(currentUser.email);
-				patientData(currentUser.email);
+				fetchData(currentUser?.email);
+				patientData(currentUser?.email);
 			}
 		} catch (error) {
 			<Navigate to={`/`} />;

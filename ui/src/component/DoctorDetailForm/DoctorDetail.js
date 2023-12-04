@@ -7,6 +7,7 @@ import { Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import toast, { Toaster } from 'react-hot-toast';
+import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../../firebase/Auth';
 
 export default function DoctorDetail() {
@@ -19,7 +20,7 @@ export default function DoctorDetail() {
 			console.log('in useeffect doctordetail');
 			setFormData({
 				...formData,
-				emailId: currentUser.email,
+				emailId: currentUser?.email,
 			});
 		}
 	}, [currentUser]);
@@ -76,6 +77,10 @@ export default function DoctorDetail() {
 	};
 	const inputSx = { width: '80%' };
 
+	if (!currentUser) {
+		return <Navigate to={`/`} />;
+	}
+
 	return (
 		<Box
 			component="form"
@@ -122,7 +127,7 @@ export default function DoctorDetail() {
 					<TextField
 						id="emailId"
 						label="Email Id "
-						defaultValue={currentUser.email}
+						defaultValue={currentUser?.email}
 						onChange={handleInputChange}
 						required
 					/>

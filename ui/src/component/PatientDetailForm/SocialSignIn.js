@@ -25,6 +25,14 @@ const SocialSignIn = () => {
 				variant="outlined"
 				color="secondary"
 				style={{ marginTop: '1em' }}
+				sx={{
+					borderRadius: '50px',
+					color: 'black',
+					backgroundColor: 'white',
+					'&:hover': {
+						backgroundColor: 'white',
+					},
+				}}
 				onClick={() => socialSignOn('google')}
 				startIcon={<GoogleIcon style={{ color: 'currentColor' }} />}
 			>
