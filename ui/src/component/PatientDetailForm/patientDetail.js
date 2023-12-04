@@ -229,7 +229,7 @@ export default function PatientDetail() {
 						label="Height"
 						name="height"
 						type="number"
-						placeholder="Height should be in format (num.num)"
+						placeholder="Height should be in cms"
 						InputLabelProps={{
 							shrink: true,
 						}}

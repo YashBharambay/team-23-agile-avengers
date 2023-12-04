@@ -101,8 +101,19 @@ const checkPatientProfile = async (email) => {
 	}
 };
 
+const getPatientById = async (email) => {
+	const patientsCollection = await patients();
+	const patient = await patientsCollection.findOne({ emailId: email });
+	if (patient) {
+		return patient;
+	} else {
+		throw 'No Patient found';
+	}
+};
+
 module.exports = {
 	createPatient,
 	getAllPatients,
 	checkPatientProfile,
+	getPatientById,
 };

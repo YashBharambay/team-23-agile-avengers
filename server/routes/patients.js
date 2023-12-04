@@ -64,16 +64,33 @@ router
 		}
 	});
 
-router.route('/:emailId').get(async (req, res) => {
+router.route('/check/:emailId').get(async (req, res) => {
 	try {
 		if (!req.params.emailId) throw 'you must provide movieID';
 		req.params.emailId = helpers.IsValidEmail(req.params.emailId);
 	} catch (e) {
+		console.log(e);
 		return res.status(400).json({ error: e });
 	}
 	try {
 		let val = await patientsData.checkPatientProfile(req.params.emailId);
 		res.json(val);
+	} catch (e) {
+		res.status(404).json({ error: 'Patient not found' });
+	}
+});
+
+router.route('/:emailId').get(async (req, res) => {
+	try {
+		if (!req.params.emailId) throw 'you must provide movieID';
+		req.params.emailId = helpers.IsValidEmail(req.params.emailId);
+	} catch (e) {
+		console.log(e);
+		return res.status(400).json({ error: e });
+	}
+	try {
+		let patient = await patientsData.getPatientById(req.params.emailId);
+		res.json(patient);
 	} catch (e) {
 		res.status(404).json({ error: 'Patient not found' });
 	}
