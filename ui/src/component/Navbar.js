@@ -12,6 +12,7 @@ import {
 	Container,
 	Box,
 } from '@mui/material';
+import { Navigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { doSignOut } from '../firebase/functions';
@@ -22,6 +23,11 @@ const Navbar = (user) => {
 
 	const toggleDrawer = (open) => () => {
 		setDrawerOpen(open);
+	};
+
+	const signout = async () => {
+		doSignOut();
+		return <Navigate to={`/`} />;
 	};
 
 	const menuItems = ['Home', 'About'];
@@ -52,7 +58,7 @@ const Navbar = (user) => {
 					</Container>
 					<Button
 						variant="outlined"
-						onClick={doSignOut} // Call handleSignUp on button click
+						onClick={signout} // Call handleSignUp on button click
 						color="inherit"
 					>
 						Sign Out

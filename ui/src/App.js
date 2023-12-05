@@ -12,6 +12,8 @@ import PatientDashboard from './pages/Patient/PatientDashboard';
 import DoctorAuth from './pages/Doctor/DoctorAuth';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import ContactUs from './pages/ContactUs';
+import About from './pages/About';
 
 function App() {
 	return (
@@ -28,6 +30,8 @@ function App() {
 						<Route path="/PatLogin" element={<PatLogin />} />
 						<Route path="/patientDashboard" element={<PatientDashboard />} />
 						<Route path="/DoctorDetailsForm" element={<DoctorAuth />} />
+						<Route path="/contact" element={<ContactUs />} />
+						<Route path="/about" element={<About />} />
 					</Routes>
 				</BrowserRouter>
 			</LocalizationProvider>
