@@ -69,11 +69,12 @@ function PatLogin() {
 		<div
 			className="card"
 			style={{
-				width: '80rem',
+				//width: '80rem',
 				display: 'block',
 				marginLeft: 'auto',
 				marginRight: 'auto',
-				marginTop: '10rem',
+				backgroundColor: '#2196F3', // Set background color to blue
+				padding: '20px', // Add padding for better spacing
 			}}
 		>
 			{error ? (
@@ -102,50 +103,99 @@ function PatLogin() {
 				''
 			)}
 			<div className="card-body">
-				<h1 className="card-title">Login</h1>
+				<h1 className="card-title makeCenter" style={{ color: 'white' }}>
+					Login
+				</h1>
 				<br />
 				<form onSubmit={validateLogin} id="register-form">
 					<TextField
 						label="Email"
 						onChange={(e) => setData({ ...data, email: e.target.value })}
 						required
-						variant="filled"
+						variant="outlined"
 						color="primary"
 						type="email"
-						sx={{ mb: 3 }}
+						sx={{
+							mb: 3,
+							borderRadius: '50px',
+							backgroundColor: 'white',
+							color: 'black',
+							'& .MuiOutlinedInput-root': {
+								'& fieldset': {
+									border: 'none', // Remove border
+								},
+							},
+						}}
 						fullWidth
 						value={data.email}
+						inputProps={{ style: { color: 'black' } }}
 					/>
 					<TextField
 						label="Password"
 						onChange={(e) => setData({ ...data, password: e.target.value })}
 						required
-						variant="filled"
+						variant="outlined"
 						color="primary"
 						type="password"
 						value={data.password}
 						fullWidth
-						sx={{ mb: 3 }}
+						sx={{
+							mb: 3,
+							borderRadius: '50px',
+							backgroundColor: 'white',
+							color: 'black',
+							'& .MuiOutlinedInput-root': {
+								'& fieldset': {
+									border: 'none', // Remove border
+								},
+							},
+						}}
+						inputProps={{ style: { color: 'black' } }}
 					/>
 					<br />
 					<br />
-					<Button variant="outlined" color="secondary" type="submit">
-						Login
-					</Button>
+					<div className="makeCenter">
+						<Button
+							variant="outlined"
+							color="secondary"
+							type="submit"
+							sx={{
+								borderRadius: '50px',
+								color: 'black',
+								backgroundColor: 'white',
+								'&:hover': {
+									backgroundColor: 'white',
+								},
+							}}
+							className="makeCenter"
+						>
+							Login
+						</Button>
+					</div>
 					<br />
 					<br />
-					<div>
+					<div
+						className="makeright"
+						style={{ color: 'white', fontSize: '20px' }}
+					>
 						<small>
-							Don't have an account? <Link to="/PatSignUp">Register</Link>
+							Don't have an account?{' '}
+							<Link to="/PatSignUp" style={{ color: 'white' }}>
+								Register
+							</Link>
 						</small>
 						<br />
 						<small>
-							<Link onClick={passwordReset}>Forgot Password ? </Link>
+							<Link onClick={passwordReset} style={{ color: 'white' }}>
+								Forgot Password ?{' '}
+							</Link>
 						</small>
 					</div>
 					<br />
-					<Divider variant="middle">OR</Divider>
-					<div className="makeCenter">
+					<Divider variant="middle" style={{ color: 'white' }}>
+						OR
+					</Divider>
+					<div className="makeCenter" style={{ color: 'white' }}>
 						<SocialSignIn />
 					</div>
 					<br />

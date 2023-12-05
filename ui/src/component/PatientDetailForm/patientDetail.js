@@ -53,7 +53,7 @@ export default function PatientDetail() {
 			console.log('in useeffect doctordetail');
 			setFormData({
 				...formData,
-				emailId: currentUser.email,
+				emailId: currentUser?.email,
 			});
 		}
 	}, [currentUser]);
@@ -181,7 +181,7 @@ export default function PatientDetail() {
 					<TextField
 						id="emailId"
 						label="Email Id "
-						defaultValue={currentUser.email}
+						defaultValue={currentUser?.email}
 						onChange={handleInputChange}
 						required
 					/>

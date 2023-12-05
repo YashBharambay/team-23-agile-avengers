@@ -90,7 +90,7 @@ const Prediction = () => {
 	};
 	return (
 		<Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
-			<Navbar />
+			{/* <Navbar /> */}
 			<Typography variant="h4" gutterBottom>
 				Cardio Vascular Disorder Prediction
 			</Typography>

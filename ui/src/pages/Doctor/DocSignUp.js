@@ -64,11 +64,11 @@ function DocSignUp() {
 			<div
 				className="card"
 				style={{
-					width: '80rem',
 					display: 'block',
 					marginLeft: 'auto',
 					marginRight: 'auto',
-					marginTop: '10rem',
+					backgroundColor: '#2196F3', // Set background color to blue
+					padding: '20px', // Add padding for better spacing
 				}}
 			>
 				{error ? (
@@ -85,28 +85,52 @@ function DocSignUp() {
 					''
 				)}
 				<div className="card-body">
-					<h1 className="card-title">Sign Up</h1>
+					<h1 className="card-title makeCenter" style={{ color: 'white' }}>
+						Sign Up
+					</h1>
 					<br />
 					<form onSubmit={validateRegister} id="register-form">
 						<TextField
 							label="Full Name"
 							onChange={(e) => setData({ ...data, name: e.target.value })}
 							required
-							variant="filled"
+							variant="outlined"
 							color="secondary"
 							type="text"
 							value={data.name}
 							fullWidth
-							sx={{ mb: 3 }}
+							sx={{
+								mb: 3,
+								borderRadius: '50px',
+								backgroundColor: 'white',
+								color: 'black',
+								'& .MuiOutlinedInput-root': {
+									'& fieldset': {
+										border: 'none', // Remove border
+									},
+								},
+							}}
+							inputProps={{ style: { color: 'black' } }}
 						/>
 						<TextField
 							label="Email"
 							onChange={(e) => setData({ ...data, email: e.target.value })}
 							required
-							variant="filled"
+							variant="outlined"
 							color="secondary"
 							type="email"
-							sx={{ mb: 3 }}
+							sx={{
+								mb: 3,
+								borderRadius: '50px',
+								backgroundColor: 'white',
+								color: 'black',
+								'& .MuiOutlinedInput-root': {
+									'& fieldset': {
+										border: 'none', // Remove border
+									},
+								},
+							}}
+							inputProps={{ style: { color: 'black' } }}
 							fullWidth
 							value={data.email}
 						/>
@@ -114,12 +138,23 @@ function DocSignUp() {
 							label="Password"
 							onChange={(e) => setData({ ...data, password: e.target.value })}
 							required
-							variant="filled"
+							variant="outlined"
 							color="secondary"
 							type="password"
 							value={data.password}
 							fullWidth
-							sx={{ mb: 3 }}
+							sx={{
+								mb: 3,
+								borderRadius: '50px',
+								backgroundColor: 'white',
+								color: 'black',
+								'& .MuiOutlinedInput-root': {
+									'& fieldset': {
+										border: 'none', // Remove border
+									},
+								},
+							}}
+							inputProps={{ style: { color: 'black' } }}
 						/>
 						<TextField
 							label="Confirm Password"
@@ -127,26 +162,55 @@ function DocSignUp() {
 								setData({ ...data, confirmPassword: e.target.value })
 							}
 							required
-							variant="filled"
+							variant="outlined"
 							color="secondary"
 							type="password"
 							value={data.confirmPassword}
 							fullWidth
-							sx={{ mb: 3 }}
+							sx={{
+								mb: 3,
+								borderRadius: '50px',
+								backgroundColor: 'white',
+								color: 'black',
+								'& .MuiOutlinedInput-root': {
+									'& fieldset': {
+										border: 'none', // Remove border
+									},
+								},
+							}}
+							inputProps={{ style: { color: 'black' } }}
 						/>
-						<Button
-							variant="outlined"
-							color="secondary"
-							type="submit"
-							style={{ marginTop: '1em' }}
+						<div className="makeCenter">
+							<Button
+								variant="outlined"
+								color="secondary"
+								type="submit"
+								sx={{
+									borderRadius: '50px',
+									color: 'black',
+									backgroundColor: 'white',
+									'&:hover': {
+										backgroundColor: 'white',
+									},
+								}}
+								className="makeCenter"
+							>
+								Sign Up
+							</Button>
+						</div>
+						<br />
+						<br />
+						<div
+							className="makeright"
+							style={{ color: 'white', fontSize: '20px' }}
 						>
-							Sign Up
-						</Button>
-						<br />
-						<br />
-						<small>
-							Already have an account? <Link to="/login">Login</Link>
-						</small>
+							<small>
+								Already have an account?{' '}
+								<Link to="/DocLogin" style={{ color: 'white' }}>
+									Login
+								</Link>
+							</small>
+						</div>
 					</form>
 				</div>
 			</div>
