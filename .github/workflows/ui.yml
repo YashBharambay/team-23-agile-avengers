@@ -22,8 +22,22 @@ jobs:
     - name: Install dependencies
       run: npm install
       working-directory: ui
+
+    - name: Install cypress
+      run: npm install cypress
+
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+          working-directory: ui
+          start: npm start # Command to start your server, adjust as needed
+          wait-on: 'http://localhost:3000' # Adjust the URL/port as per your server
+          wait-on-timeout: 60 # Time in seconds to wait for the server to start
+          spec: cypress/e2e/E2ETest.cy.js # The path to the spec file
       
-    - name: Run server tests
-      run: npm test
-      working-directory: ui
+    # - name: Run server tests
+    #   run: npm test
+    #   working-directory: ui
+
+    
   
