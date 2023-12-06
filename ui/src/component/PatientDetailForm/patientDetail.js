@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import '../PatientDetailForm/patientDetail.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
 	Button,
 	FormControl,
@@ -13,8 +13,11 @@ import {
 import Grid from '@mui/material/Grid';
 import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../../firebase/Auth';
+import axios from 'axios';
+import Navbar from '../Navbar';
 
 export default function PatientDetail() {
+	const { email } = useParams();
 	const [formData, setFormData] = useState({
 		firstName: '',
 		lastName: '',
@@ -57,6 +60,19 @@ export default function PatientDetail() {
 			});
 		}
 	}, [currentUser]);
+
+	useEffect(() => {
+		const fetchPatientDetails = async () => {
+			try {
+				const url = `http://localhost:3002/patients/${email}`;
+				const res = await axios.get(url);
+				setFormData(res.data);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		fetchPatientDetails();
+	}, [email]);
 
 	const clearForm = () => {
 		setFormData({
@@ -217,9 +233,10 @@ export default function PatientDetail() {
 							onChange={handleInputChange}
 							value={formData.gender || ''}
 							name="gender"
+							sx={{ textAlign: 'left' }}
 						>
 							<MenuItem value={1}>Male</MenuItem>
-							<MenuItem value={0}>Female</MenuItem>
+							<MenuItem value={2}>Female</MenuItem>
 						</Select>
 					</FormControl>
 				</Grid>
@@ -244,7 +261,8 @@ export default function PatientDetail() {
 							id="demo-simple-select"
 							label="Smoke"
 							onChange={handleInputChange}
-							value={formData.smoke || ''}
+							sx={{ textAlign: 'left' }}
+							value={formData.smoke != null ? formData.smoke : ''}
 							name="smoke"
 						>
 							<MenuItem value={1}>Yes</MenuItem>
@@ -259,7 +277,8 @@ export default function PatientDetail() {
 							id="demo-simple-select"
 							label="alcohol"
 							onChange={handleInputChange}
-							value={formData.alcohol || ''}
+							sx={{ textAlign: 'left' }}
+							value={formData.alcohol != null ? formData.alcohol : ''}
 							name="alcohol"
 						>
 							<MenuItem value={1}>Yes</MenuItem>
@@ -275,7 +294,8 @@ export default function PatientDetail() {
 							label="activity"
 							placeholder="If you do medium to less activity select Low otherwise select high"
 							onChange={handleInputChange}
-							value={formData.activity || ''}
+							sx={{ textAlign: 'left' }}
+							value={formData.activity != null ? formData.activity : ''}
 							name="activity"
 						>
 							<MenuItem value={1}>High</MenuItem>
@@ -291,7 +311,8 @@ export default function PatientDetail() {
 							label="cholestrol"
 							placeholder="Your cholestrol level"
 							onChange={handleInputChange}
-							value={formData.cholestrol || ''}
+							sx={{ textAlign: 'left' }}
+							value={formData.cholestrol != null ? formData.cholestrol : ''}
 							name="cholestrol"
 						>
 							<MenuItem value={3}>High</MenuItem>
@@ -309,7 +330,8 @@ export default function PatientDetail() {
 							label="glucose"
 							placeholder="Your glucose level"
 							onChange={handleInputChange}
-							value={formData.glucose || ''}
+							sx={{ textAlign: 'left' }}
+							value={formData.glucose != null ? formData.glucose : ''}
 							name="glucose"
 						>
 							<MenuItem value={3}>High</MenuItem>

@@ -80,19 +80,61 @@ router.route('/check/:emailId').get(async (req, res) => {
 	}
 });
 
-router.route('/:emailId').get(async (req, res) => {
-	try {
-		if (!req.params.emailId) throw 'you must provide movieID';
-		req.params.emailId = helpers.IsValidEmail(req.params.emailId);
-	} catch (e) {
-		console.log(e);
-		return res.status(400).json({ error: e });
-	}
-	try {
-		let patient = await patientsData.getPatientById(req.params.emailId);
-		res.json(patient);
-	} catch (e) {
-		res.status(404).json({ error: 'Patient not found' });
-	}
-});
+router
+	.route('/:emailId')
+	.get(async (req, res) => {
+		try {
+			if (!req.params.emailId) throw 'you must provide movieID';
+			req.params.emailId = helpers.IsValidEmail(req.params.emailId);
+		} catch (e) {
+			console.log(e);
+			return res.status(400).json({ error: e });
+		}
+		try {
+			let patient = await patientsData.getPatientById(req.params.emailId);
+			res.json(patient);
+		} catch (e) {
+			res.status(404).json({ error: 'Patient not found' });
+		}
+	})
+	.post(async (req, res) => {
+		try {
+			let editedPatientInfo = req.body;
+			let newPatient = await patientsData.updatePatient(
+				req.params.emailId,
+				editedPatientInfo.firstName,
+				editedPatientInfo.middleName,
+				editedPatientInfo.lastName,
+				editedPatientInfo.emailId,
+				editedPatientInfo.age,
+				editedPatientInfo.gender,
+				editedPatientInfo.height,
+				editedPatientInfo.smoke,
+				editedPatientInfo.alcohol,
+				editedPatientInfo.activity,
+				editedPatientInfo.allergies,
+				editedPatientInfo.cholestrol,
+				editedPatientInfo.glucose,
+				editedPatientInfo.symptoms,
+				editedPatientInfo.other_complaints,
+				editedPatientInfo.medications,
+				editedPatientInfo.contact_address_line,
+				editedPatientInfo.contact_address_line_2,
+				editedPatientInfo.contact_city,
+				editedPatientInfo.contact_zip_code,
+				editedPatientInfo.contact_state,
+				editedPatientInfo.contact_number,
+				editedPatientInfo.emergencey_contact_number,
+				editedPatientInfo.emergencey_contact_name,
+				editedPatientInfo.insurrance_member_id,
+				editedPatientInfo.insurrance_group_number,
+				editedPatientInfo.insurrance_plan_type,
+				editedPatientInfo.insurrance_primarycare_provider
+			);
+			res.json(newPatient);
+		} catch (e) {
+			console.log(e);
+			res.status(404).json({ error: 'Patient not found' });
+		}
+	});
 module.exports = router;

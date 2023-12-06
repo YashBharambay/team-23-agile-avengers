@@ -11,14 +11,20 @@ import warnings
 
 app = Flask(__name__)
 CORS(app)
-# df=pd.read_csv("transformed_CVD_Data.csv")
-# y=df['cardio']
-# x=df.drop(['cardio'],axis=1)
-# xtr,xts,ytr,yts=train_test_split(x,y,test_size=0.25,random_state=23,stratify=y)
-# XGBClassifierPipeline=Pipeline([('scaler', StandardScaler()),
-#                       ('model', XGBClassifier( gamma= 4.198875359789924, max_depth= 17, min_child_weight= 1, reg_alpha= 57))])
-# bgc = BaggingClassifier(XGBClassifierPipeline,max_samples=0.5, max_features=0.5)
-# bgc.fit(xtr,ytr)
+# High Chances of probability
+# {
+#     "age": 55,
+#     "gender": 1,
+#     "height": 165,
+#     "weight": 70,
+#     "ap_hi": 140,
+#     "ap_lo": 90,
+#     "cholesterol": 3,
+#     "gluc": 3,
+#     "smoke": 0,
+#     "alco": 0,
+#     "active": 0
+# }
 import joblib
 svm_model=joblib.load("./machine_learning_backend/ML_Models/model.pkl")
 
@@ -26,7 +32,7 @@ svm_model=joblib.load("./machine_learning_backend/ML_Models/model.pkl")
 def predict():
     try:
         data = request.get_json()
-        features = [data['age'], data['gender'], data['height'], data['weight'], data['ap_hi'], data['ap_lo'],
+        features = [int(data['age']), data['gender'], data['height'], data['weight'], data['ap_hi'], data['ap_lo'],
                     data['cholesterol'], data['gluc'], data['smoke'], data['alco'], data['active']]
         prediction = svm_model.predict([features])
         threshold=0.8
@@ -36,7 +42,6 @@ def predict():
         else:
             classification_result = "Less chances for cardiovascular disorder"
 
-        
         return jsonify({'prediction': int(prediction[0]),'probability':float(probability[0][prediction][0]),'classification':classification_result})  # Convert numpy int64 to Python int
     except Exception as e:
         return jsonify({'error': str(e)})

@@ -14,6 +14,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import ContactUs from './pages/ContactUs';
 import About from './pages/About';
+import Prediction from './component/PredictionAnalysis/prediction_analysis';
+import PatientDetail from './component/PatientDetailForm/patientDetail';
+import EditPatientDetailForm from './component/PatientDetailForm/editPatientDetailForm';
 
 function App() {
 	return (
@@ -32,6 +35,11 @@ function App() {
 						<Route path="/DoctorDetailsForm" element={<DoctorAuth />} />
 						<Route path="/contact" element={<ContactUs />} />
 						<Route path="/about" element={<About />} />
+						<Route path="/prediction" element={<Prediction />} />
+						<Route
+							path="/editPatient/:email"
+							element={<EditPatientDetailForm />}
+						/>
 					</Routes>
 				</BrowserRouter>
 			</LocalizationProvider>

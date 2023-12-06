@@ -19,7 +19,7 @@ import { doSignOut } from '../firebase/functions';
 
 const Navbar = (user) => {
 	const [drawerOpen, setDrawerOpen] = useState(false);
-	const linkTo = user === 'patient' ? '/patientDashboard' : '/doctorDashboard';
+	//const linkTo = user === 'doctor' ? '/doctorDashboard' : '/patientDashboard';
 
 	const toggleDrawer = (open) => () => {
 		setDrawerOpen(open);
