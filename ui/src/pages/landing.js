@@ -14,7 +14,7 @@ const PRIMARY_COLOR = 'primary';
 
 function RenderButton(label, color, to) {
 	return (
-		<Box>
+		<Box data-cy={`${label.toLowerCase()}-link`}>
 			<Button
 				variant="contained"
 				color={color}
@@ -74,11 +74,6 @@ export default function LandingPage() {
 								through technology.
 							</Typography>
 							<br />
-							{/* <Typography variant="body1" align="left" paragraph>
-								In this journey, we aim to make a difference in end-of-life care
-								by leveraging cutting-edge technology. Join us in this mission
-								to provide comfort, support, and dignity to those in need.
-							</Typography> */}
 							<div>
 								<Box mt={2} align="center">
 									<Box m={2}></Box>

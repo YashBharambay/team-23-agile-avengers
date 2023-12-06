@@ -1,15 +1,7 @@
 import React from 'react';
 import './ContactUs.css';
 import Navbar from '../component/Navbar';
-import {
-	Box,
-	Button,
-	Container,
-	Grid,
-	Divider,
-	Paper,
-	Typography,
-} from '@mui/material';
+import { Container, Grid, Paper, Typography } from '@mui/material';
 import '../assets/common.css';
 
 const About = () => {

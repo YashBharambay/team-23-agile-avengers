@@ -4,17 +4,25 @@ import Navbar from '../component/Navbar';
 import { TextField, Button } from '@mui/material/';
 import '../assets/common.css';
 import { Link } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ContactUs = () => {
+	const submitFun = async () => {
+		toast.success('Successfully submitted!');
+	};
+
 	return (
 		<>
 			<Navbar />
+			<div>
+				<Toaster />
+			</div>
 			<div className="contact-us-container">
 				<div className="contact-form-container">
 					<h1>Contact Us</h1>
 					<p>Have questions? Reach out to us using the form below.</p>
 
-					<form>
+					<form onSubmit={submitFun}>
 						<div className="form-group">
 							<label htmlFor="name">Name:</label>
 							<input type="text" id="name" name="name" required />

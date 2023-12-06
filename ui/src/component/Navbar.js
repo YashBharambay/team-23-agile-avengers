@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import {
 	AppBar,
 	Toolbar,
-	IconButton,
-	Typography,
 	Drawer,
 	List,
 	ListItem,
@@ -13,7 +11,7 @@ import {
 	Box,
 } from '@mui/material';
 import { Navigate } from 'react-router-dom';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { doSignOut } from '../firebase/functions';
 

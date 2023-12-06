@@ -28,10 +28,10 @@ export const isPasswordSame = (repassword, password) => {
 };
 
 export const isValidPassword = (passowrd) => {
-	if (
-		!passowrd.match(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,12}$/)
-	)
-		throw new Error('Invalid Password');
+	if (!passowrd.match(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])/))
+		throw new Error(
+			'Invalid Password must include upper case letter , lower case letter , digit and special character'
+		);
 	return passowrd;
 };
 
