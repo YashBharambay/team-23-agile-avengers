@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, CircularProgress, Typography } from '@mui/material/';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
 	Card,
@@ -25,9 +25,11 @@ export default function DoctorDashboard() {
 	const [loading, setLoading] = useState(true);
 	const [allPatients, setAllPatient] = useState(undefined);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const navigate = useNavigate();
 
 	const handleOpenModal = () => {
-		setIsModalOpen(true);
+		// setIsModalOpen(true);
+		navigate('/prediction');
 	};
 
 	const handleCloseModal = () => {
