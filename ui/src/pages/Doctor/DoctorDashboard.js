@@ -108,6 +108,9 @@ export default function DoctorDashboard() {
 							<Typography variant="body1" gutterBottom>
 								Age: {patient.age}
 							</Typography>
+							<Typography variant="body1" gutterBottom>
+								Gender: {patient.gender === 1 ? 'male' : 'female'}
+							</Typography>
 						</CardContent>
 					</Box>
 					<Box sx={{ flexGrow: 1 }} />

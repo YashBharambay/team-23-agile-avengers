@@ -3,19 +3,20 @@ describe('template spec', () => {
 		cy.visit('http://localhost:3000');
 
 		// Verify the main heading
-		cy.get('h2').should(
+		cy.get('h4').should(
 			'contain.text',
 			'Enriching End of Life Care with Technology'
 		);
-		cy.get('body').should(
+		cy.get('p').should(
 			'contain.text',
-			'In this journey, we aim to make a difference in end-of-life care'
+			'Welcome to our platform dedicated to improving end-of-life care through technology.'
 		);
 		// Verify the buttons and their links
-		cy.get('a.showlink')
-			.contains('Doctor')
-			.should('have.attr', 'href', '/DocLogin');
-		cy.get('a.showlink')
+		cy.get('[data-cy="doctor-link"]')
+			.should('exist')
+			.invoke('text')
+			.should('include', 'Doctor');
+		cy.get('[data-cy="for patients-link"]')
 			.contains('For Patients')
 			.should('have.attr', 'href', '/PatLogin');
 		cy.contains('Doctor').click();
