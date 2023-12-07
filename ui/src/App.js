@@ -13,6 +13,7 @@ import DoctorAuth from './pages/Doctor/DoctorAuth';
 import PADashboard from './pages/Personal Assistant/PADashboard';
 import PASignUp from './pages/Personal Assistant/PASignUp';
 import PALogin from './pages/Personal Assistant/PALogin';
+import SymptomForm from './pages/Personal Assistant/SymptomForm';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
@@ -34,6 +35,7 @@ function App() {
 						<Route path="/PASignUp" element={<PASignUp />} />
 						<Route path="/PALogin" element={<PALogin />} />
 						<Route path="/PADashboard" element={<PADashboard />} />
+						<Route path="/SymptomForm" element={<SymptomForm />} />
 					</Routes>
 				</BrowserRouter>
 			</LocalizationProvider>
