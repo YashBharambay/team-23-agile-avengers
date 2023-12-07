@@ -112,9 +112,8 @@ def audio():
 def symptoms():
     try:
         data = request.get_json()
-
-        # Convert numpy int64 to Python int
-        return jsonify(data)
+        if data:
+            return jsonify(data)
     except Exception as e:
         return jsonify({'error': str(e)})
 

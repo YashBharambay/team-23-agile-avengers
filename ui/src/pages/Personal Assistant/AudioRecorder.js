@@ -14,7 +14,7 @@ function timeout(delay) {
 	return new Promise((res) => setTimeout(res, delay));
 }
 
-function generateQuestions(symptom, time_period) {
+async function generateQuestions(symptom, time_period) {
 	// Function to determine if it's day or night
 	const getDayOrNight = () => {
 		const hours = new Date().getHours();
@@ -31,6 +31,18 @@ function generateQuestions(symptom, time_period) {
 		duration: `Has the symptom been present for more than ${time_period} continuously? Please say Yes or No`,
 		continuous: `Can you tell me if the ${symptom} has been continuous? Please say Yes or No`,
 	};
+
+	const msg = new SpeechSynthesisUtterance();
+
+	const speechHandler = (msg) => {
+		window.speechSynthesis.speak(msg);
+	};
+
+	for (const [symptom, question] of Object.entries(general_questions)) {
+		msg.text = question;
+		//speechHandler(msg);
+		await timeout(5000);
+	}
 
 	return general_questions;
 }
@@ -166,8 +178,7 @@ const AudioRecorder = () => {
 					variant="outlined"
 					color="secondary"
 					className="top-right-button"
-					//onClick= // Call handleSignUp on button click
-					href="/SymptomForm"
+					//onClick={generateQuestions('pain', '2 hours')} // Call handleSignUp on button click
 				>
 					Ask Questions
 				</Button>
